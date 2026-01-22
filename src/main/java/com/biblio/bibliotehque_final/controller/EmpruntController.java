@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emprunts")
+@CrossOrigin(origins = "*")
 public class EmpruntController {
 
     @Autowired

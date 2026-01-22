@@ -99,15 +99,15 @@ public class Emprunt {
         this.livre = livre;
     }
 
-    @Override
-    public String toString() {
-        return "Emprunt{" +
-                "id=" + id +
-                ", dateEmprunt=" + dateEmprunt +
-                ", dateRetourPrevue=" + dateRetourPrevue +
-                ", dateRetourEffective=" + dateRetourEffective +
-                ", membre=" + membre +
-                ", livre=" + livre +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Emprunt{" +
+//                "id=" + id +
+//                ", dateEmprunt=" + dateEmprunt +
+//                ", dateRetourPrevue=" + dateRetourPrevue +
+//                ", dateRetourEffective=" + dateRetourEffective +
+//                ", membre=" + membre +
+//                ", livre=" + livre +
+//                '}';
+//    }
 }

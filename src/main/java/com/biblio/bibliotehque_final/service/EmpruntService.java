@@ -25,13 +25,13 @@ public class EmpruntService {
     private LivreService livreService;
 
     public List<EmpruntsAvecLivreMembre> getAll() {
-        List<EmpruntsAvecLivreMembre> list = new ArrayList<>();
+        List<EmpruntsAvecLivreMembre> listDto = new ArrayList<>();
 
         for (Emprunt emprunt : empruntRepository.findAll()) {
-            list.add(new EmpruntsAvecLivreMembre(emprunt));
+            listDto.add(new EmpruntsAvecLivreMembre(emprunt));
         }
 
-        return list;
+        return listDto;
     }
 
     public Emprunt getById(Long id) {

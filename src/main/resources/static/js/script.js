@@ -1,11 +1,9 @@
 console.log("loaded");
-const divContenu = document.getElementById("contenu");
-const buttonLivres = document.getElementById("livres");
-const buttonMembres = document.getElementById("membres")
 let mesLivres;
+let mesMembres;
+let mesEmprunts;
 
-buttonLivres.addEventListener("click" , event => {
-    fetch("http://localhost:8080/livres/all")
+fetch("http://localhost:8080/livres/all")
     .then(response => {
         if (!response.ok) {
             throw new Error("Error serveur");
@@ -14,20 +12,13 @@ buttonLivres.addEventListener("click" , event => {
     })
     .then(json => {
         mesLivres = json;
-        if (divContenu.textContent != "") {
-        divContenu.textContent = ""
-        }
-        for (let livre of json) {
-            afficherLivres(livre);
-        }
+        console.log(mesLivres)
     })
     .catch(error => {
         console.error(error);
     });
-})
 
-buttonMembres.addEventListener("click" , event => {
-    fetch("http://localhost:8080/membre/all")
+fetch("http://localhost:8080/membre/all")
     .then(response => {
         if (!response.ok) {
             throw new Error("Error serveur");
@@ -35,21 +26,45 @@ buttonMembres.addEventListener("click" , event => {
         return response.json();
     })
     .then(json => {
-        if (divContenu.textContent != "") {
-        divContenu.textContent = ""
-        }
-        for (let membre of json) {
-            afficherMembre(membre);
-        }
+        mesMembres = json
+        console.log(mesMembres)
     })
     .catch(error => {
         console.error(error);
     });
+
+
+fetch("http://localhost:8080/emprunts/all")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error serveur");
+        }
+        return response.json();
+    })
+    .then(json => {
+        mesEmprunts = json
+        console.log(mesEmprunts);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+
+    // console.log(new Date());
+    // console.log(new Date(json[0].dateRetourPrevue));
+    // console.log( Math.floor(((new Date()) - (new Date(json[0].dateRetourPrevue))) / (1000 * 60 * 60 * 24)));
+
+const divContenu = document.getElementById("contenu");
+document.getElementById("btnLivres").addEventListener("click", arg => {
+    console.log("ici")
+    for (let livre of mesLivres) {
+        afficherLivre(livre);
+    }
 })
+document.getElementById("btnMembres");
+document.getElementById("btnEmprunts");
 
-
-
-function afficherLivres(livre) {
+function afficherLivre(livre) {
     const livreElement = document.createElement("div")
     const titreP = document.createElement("p")
     titreP.textContent = livre.titre;
